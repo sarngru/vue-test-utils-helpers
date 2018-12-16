@@ -1,6 +1,6 @@
-import { mockStoreActionsAndGetters } from '../../src/mockStoreActionsAndGetters'
+import { mockStoreActions } from '../../src/mockStoreActions'
 
-describe('mockStoreActionsAndGetters', () => {
+describe('mockStoreActions', () => {
   const foo = () => {}
   const mockResolvedValue = { mockResolvedValue: () => foo }
   const jestFn = () => mockResolvedValue
@@ -8,13 +8,6 @@ describe('mockStoreActionsAndGetters', () => {
   const modules = {
     todos: {
       namespaced: true,
-      state: {
-        todos: ['todo1']
-      },
-      getters: {
-        todos: () => {},
-        archivedTodos: () => {}
-      },
       actions: {
         getTodos () {
           return Promise.resolve(['todo1', 'todo2'])
@@ -22,12 +15,6 @@ describe('mockStoreActionsAndGetters', () => {
       }
     },
     users: {
-      state: {
-        users: []
-      },
-      getters: {
-        users: () => {}
-      },
       actions: {
         getUsers () {
           return Promise.resolve([])
@@ -40,37 +27,21 @@ describe('mockStoreActionsAndGetters', () => {
           return Promise.resolve([])
         }
       }
-    },
-    onlyGetters: {
-      getters: {
-        onlyGetter: () => {}
-      }
     }
   }
 
   it('should mock store actions and getters', () => {
-    const mockedGetters = {
-      'todos/archivedTodos': foo
-    }
     const expectedActions = {
       'getUsers': jestFn().mockResolvedValue(),
       'onlyAction': jestFn().mockResolvedValue(),
       'todos/getTodos': jestFn().mockResolvedValue()
     }
-    const expectedGetters = {
-      'users': mockResolvedValue,
-      'onlyGetter': mockResolvedValue,
-      'todos/todos': mockResolvedValue,
-      'todos/archivedTodos': foo
-    }
 
-    const { actions, getters } = mockStoreActionsAndGetters({
+    const { actions } = mockStoreActions({
       modules,
-      mockedGetters,
       jestFn
     })
 
-    expect(getters).toEqual(expectedGetters)
     expect(actions).toEqual(expectedActions)
   })
 })

@@ -1,5 +1,6 @@
 export { mockRouterComponents } from './mockRouterComponents'
-export { mockStoreActionsAndGetters } from './mockStoreActionsAndGetters'
+export { mockStoreActions } from './mockStoreActions'
+export { mockStoreGetters } from './mockStoreGetters'
 export { mockStoreMutations } from './mockStoreMutations'
 export { toHaveRouteName } from './toHaveRouteName'
 export { toHaveBeenNthCalledWithPayload } from './toHaveBeenNthCalledWithPayload'

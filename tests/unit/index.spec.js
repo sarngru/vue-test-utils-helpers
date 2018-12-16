@@ -3,7 +3,8 @@ import * as helpers from '../../src/'
 describe('toHaveRouteName', () => {
   const expectedHelpers = [
     'mockRouterComponents',
-    'mockStoreActionsAndGetters',
+    'mockStoreActions',
+    'mockStoreGetters',
     'mockStoreMutations',
     'toHaveRouteName',
     'toHaveBeenNthCalledWithPayload',
