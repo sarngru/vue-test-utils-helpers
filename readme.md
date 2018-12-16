@@ -1,16 +1,11 @@
 # Vue Test Utils Helpers
 Helper functions that make unit testing easier for VueJs applications.
 
-## Install
+## Installation
 
-add `"vue-test-utils-helpers": "git+ssh://git@github.com/AmpleOrganics/vue-test-utils-helpers.git#1.0.3`" to your devDependencies of your `package.json`
+`npm install --save-dev git+https://git@github.com/sarngru/vue-test-utils-helpers.git`
 
-note: replace 1.0.3 with whatever version you want to install, or leave it blank to always have the latest
-
-and run
-
-`npm i` or `yarn` to install the package
-
+---
 ## Vue-router mocking helpers
 ### mockRouterComponents
 Mocks all components in routes array and makes them available for assertion.
@@ -29,15 +24,26 @@ expect(wrapper).toHaveRouteName('home')
 ```
 
 ---
-## Vuex store actions and getters mocking helper
-### mockStoreActionsAndGetters
-Mocks Vuex store `actions` and `getters`
+## Vuex store mocking helper
+### mockStoreActions
+Discovers and mocks all `actions` in passed Vuex store `modules`
 
 ```javascript
-const { actions, getters } = mockStoreActionsAndGetters({ modules, mockedGetters: {}, jestFn: jest.fn })
+const { actions } = mockStoreActions({ modules, jestFn: jest.fn })
+```
 
-expect(actions.someAction).toHaveBeenCalled()
-expect(getters.someGetter).toHaveBeenCalled()
+### mockStoreMutations
+Discovers and mocks all `mutations` in passed Vuex store `modules`
+
+```javascript
+const { mutations } = mockStoreMutations({ modules, jestFn: jest.fn })
+```
+
+### mockStoreGetters
+Discovers and mocks all `getters` in passed Vuex store `modules`
+
+```javascript
+const { getters } = mockStoreGetters({ modules, mockedGetters: {}, jestFn: jest.fn })
 ```
 
 ### toHaveBeenLastCalledWithPayload
